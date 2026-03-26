@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Australia Under Threat — Environmental Crisis</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ochre: #3A6E2A;
+    --deep-red: #1A4A2A;
+    --sand: #E8D5A3;
+    --bark: #4A3728;
+    --sky: #1A3A4A;
+    --smoke: #6B7C6E;
+    --white: #F5F0E8;
+    --black: #1A1410;
+    --reef: #0B5E6E;
+    --fire: #4AE84B;
+    --leaf: #3A6E2A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+    cursor: none;
+    padding-top: 2.6rem; /* space for top banner */
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--ochre);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease, background 0.2s ease;
+    transform: translate(-50%, -50%);
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--ochre);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.15s ease;
+    opacity: 0.5;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 2.6rem; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(26,20,16,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,98,42,0.2);
+  }
+  .top-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 101;
+    background: #1A4A2A;
+    color: #E8F5E9;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-align: center;
+    padding: 0.54rem 1.5rem;
+    font-family: 'Poppins', sans-serif;
+  }
+  .top-banner p {
+    margin: 0;
+  }
+  .nav-brand {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    color: var(--ochre);
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-size: 0.65rem;
+    text-decoration: none;
+    color: var(--sand);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    opacity: 0.7;
+  }
+  .nav-links a:hover { color: var(--ochre); opacity: 1; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 6rem 2.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 30% 40%, rgba(200,98,42,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(139,26,14,0.2) 0%, transparent 50%),
+                var(--black);
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Arial', sans-serif;
+    font-size: clamp(6rem, 20vw, 22rem);
+    font-weight: 900;
+    font-style: italic;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(10,90,10,0.6);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: -0.02em;
+    user-select: none;
+    animation: floatText 8s ease-in-out infinite;
+  }
+
+  @keyframes floatText {
+    0%, 100% { transform: translate(-50%, -50%) rotate(-2deg); }
+    50% { transform: translate(-50%, -52%) rotate(-1deg); }
+  }
+
+  .hero-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ochre);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 7rem);
+    font-weight: 900;
+    line-height: 0.92;
+    max-width: 900px;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--ochre);
+  }
+
+  .hero-sub {
+    max-width: 480px;
+    font-size: 0.78rem;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.6);
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s forwards;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    background: var(--ochre);
+    color: var(--black);
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: all 0.25s;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.9s forwards;
+  }
+  .hero-cta:hover {
+    background: var(--fire);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(200,98,42,0.4);
+  }
+
+  .hero-stats {
+    position: absolute;
+    top: 50%;
+    right: 2.5rem;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    opacity: 0;
+    animation: fadeIn 1s 1.2s forwards;
+  }
+  .stat-pill {
+    text-align: right;
+  }
+  .stat-num {
+    font-family: 'Arial', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--ochre);
+    display: block;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.3);
+    animation: bounce 2s ease-in-out infinite;
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--ochre), transparent);
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ISSUES SECTION */
+  .section { padding: 6rem 2.5rem; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+  .section-num {
+    font-size: 0.65rem;
+    color: var(--ochre);
+    letter-spacing: 0.2em;
+    opacity: 0.6;
+  }
+  .section-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900;
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(200,98,42,0.2);
+  }
+
+  /* ISSUE CARDS */
+  .issues-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: minmax(280px, auto);
+    gap: 1rem;
+    background: rgba(200,98,42,0.1);
+  }
+
+  @media (max-width: 1200px) {
+    .issues-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 768px) {
+    .issues-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .issue-card {
+    background: var(--black);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    cursor: none;
+    transition: background 0.4s;
+  }
+  .issue-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--color);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .issue-card:hover::before { transform: scaleX(1); }
+  .issue-card:hover { background: rgba(255,255,255,0.02); }
+
+  .issue-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+  .issue-num {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--color);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+  .issue-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .issue-desc {
+    font-size: 0.72rem;
+    line-height: 1.9;
+    color: rgba(245,240,232,0.55);
+    margin-bottom: 1.5rem;
+  }
+  .issue-severity {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .severity-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.35);
+  }
+  .severity-bar {
+    flex: 1;
+    height: 3px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .severity-fill {
+    height: 100%;
+    background: var(--color);
+    border-radius: 2px;
+    transition: width 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+    width: 0%;
+  }
+  .severity-pct {
+    font-size: 0.65rem;
+    color: var(--color);
+    font-weight: 700;
+    min-width: 2.5rem;
+    text-align: right;
+  }
+
+  /* TIMELINE / DATA SECTION */
+  .data-section {
+    padding: 6rem 2.5rem;
+    background: radial-gradient(ellipse at 70% 50%, rgba(11,94,110,0.1) 0%, transparent 60%);
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 3rem;
+    max-width: 800px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--ochre), transparent);
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 3rem;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.6s ease;
+  }
+  .timeline-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .timeline-dot {
+    position: absolute;
+    left: -3rem;
+    top: 0.4rem;
+    width: 10px; height: 10px;
+    background: var(--ochre);
+    border-radius: 50%;
+    transform: translateX(-4.5px);
+    box-shadow: 0 0 0 4px rgba(200,98,42,0.15);
+  }
+  .timeline-year {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    color: var(--ochre);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .timeline-event {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .timeline-detail {
+    font-size: 0.7rem;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.5);
+  }
+
+  /* TAKE ACTION SECTION */
+  .action-section {
+    padding: 6rem 2.5rem;
+    background: linear-gradient(135deg, rgba(58,110,42,0.08) 0%, transparent 50%);
+  }
+
+  .action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+  .action-card {
+    border: 1px solid rgba(200,98,42,0.15);
+    padding: 2rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .action-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(58,110,42,0.06), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .action-card:hover {
+    border-color: var(--leaf);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(58,110,42,0.1);
+  }
+  .action-card:hover::after { opacity: 1; }
+  .action-emoji { font-size: 2rem; margin-bottom: 1rem; display: block; }
+  .action-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+  }
+  .action-desc {
+    font-size: 0.7rem;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.5);
+  }
+
+  /* MAP SECTION */
+  .map-section { padding: 6rem 2.5rem; }
+  .map-container {
+    position: relative;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(200,98,42,0.1);
+    padding: 3rem;
+    overflow: hidden;
+  }
+
+  .australia-svg {
+    width: 100%;
+    max-width: 700px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .aus-region {
+    fill: rgba(200,98,42,0.15);
+    stroke: rgba(200,98,42,0.4);
+    stroke-width: 1.5;
+    transition: all 0.3s;
+    cursor: none;
+  }
+  .aus-region:hover {
+    fill: rgba(200,98,42,0.4);
+    stroke: var(--ochre);
+  }
+
+  .map-tooltip {
+    position: absolute;
+    background: rgba(26,20,16,0.95);
+    border: 1px solid rgba(200,98,42,0.3);
+    padding: 1rem 1.5rem;
+    font-size: 0.7rem;
+    line-height: 1.7;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    max-width: 220px;
+    backdrop-filter: blur(8px);
+  }
+  .map-tooltip.show { opacity: 1; }
+  .map-tooltip-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ochre);
+    margin-bottom: 0.4rem;
+  }
+  .map-tooltip-issue {
+    color: rgba(245,240,232,0.6);
+  }
+
+  /* QUOTE SECTION */
+  .quote-section {
+    padding: 6rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .quote-section::before {
+    content: '"';
+    position: absolute;
+    top: -2rem; left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Poppins', sans-serif;
+    font-size: 20rem;
+    color: rgba(200,98,42,0.04);
+    line-height: 1;
+    pointer-events: none;
+  }
+  blockquote {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2.5rem);
+    font-style: italic;
+    font-weight: 400;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    line-height: 1.4;
+    color: var(--sand);
+  }
+  cite {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ochre);
+    font-style: normal;
+  }
+
+  /* COUNTER SECTION */
+  .counter-section {
+    padding: 4rem 2.5rem;
+    background: rgba(200,98,42,0.05);
+    border-top: 1px solid rgba(200,98,42,0.1);
+    border-bottom: 1px solid rgba(200,98,42,0.1);
+  }
+  .counters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+    text-align: center;
+  }
+  .counter-item {}
+  .counter-value {
+    font-family: 'Arial', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--ochre);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .counter-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 4rem 2.5rem;
+    border-top: 1px solid rgba(200,98,42,0.1);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .footer-brand {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--ochre);
+    margin-bottom: 1rem;
+  }
+  .footer-text {
+    font-size: 0.68rem;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.4);
+    max-width: 380px;
+  }
+  .footer-links { display: flex; flex-direction: column; gap: 0.8rem; }
+  .footer-link {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: rgba(245,240,232,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .footer-link::before {
+    content: '→';
+    color: var(--ochre);
+    font-size: 0.8rem;
+  }
+  .footer-link:hover { color: var(--white); }
+  .footer-copy {
+    grid-column: 1 / -1;
+    font-size: 0.6rem;
+    color: rgba(245,240,232,0.2);
+    letter-spacing: 0.15em;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  /* NOISE OVERLAY */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9997;
+    opacity: 0.35;
+  }
+
+  /* PROGRESS BAR */
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: var(--ochre);
+    z-index: 9999;
+    transition: width 0.1s;
+    box-shadow: 0 0 10px rgba(200,98,42,0.6);
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    .hero-stats { display: none; }
+    .section, .data-section, .action-section, .map-section, .quote-section { padding: 4rem 1.5rem; }
+    footer { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- TOP BANNER -->
+  <div class="top-banner">
+    <p>🚨 Hope you like my website. Please give me good marks😀</p>
+  </div>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- PROGRESS -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Australia Under Threat</div>
+  <div class="nav-links">
+    <a href="#issues">Issues</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#map">By Region</a>
+    <a href="#action">Take Action</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text">AARON</div>
+  <div class="hero-tag">Environmental Crisis Report — 2026 by Aaron Joseph</div>
+  <h1 class="hero-title">
+    Our Land Is<br>
+    <em>Burning.</em><br>
+    Drowning.<br>
+    Disappearing.
+  </h1>
+  <p class="hero-sub">
+    Australia is one of the world's most ecologically unique nations — and one of the most threatened. 
+    From bleaching coral reefs to vanishing forests, the crises demand urgent attention.
+  </p>
+  <a href="#issues" class="hero-cta">Explore the Issues</a>
+
+  <div class="hero-stats">
+    <div class="stat-pill">
+      <span class="stat-num">19M+</span>
+      <span class="stat-label">Hectares burned<br>in 2019–20</span>
+    </div>
+    <div class="stat-pill">
+      <span class="stat-num">50%</span>
+      <span class="stat-label">Great Barrier Reef<br>coral lost since 1990s</span>
+    </div>
+    <div class="stat-pill">
+      <span class="stat-num">#1</span>
+      <span class="stat-label">Mammal extinction<br>rate globally</span>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ISSUES GRID -->
+<section class="section" id="issues">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Critical Issues</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="issues-grid">
+
+    <div class="issue-card" style="--color: #E84B1A;">
+      <span class="issue-icon">🔥</span>
+      <span class="issue-num">Issue 01 — Wildfire</span>
+      <h3 class="issue-title">Escalating Bushfires</h3>
+      <p class="issue-desc">
+        The 2019–20 "Black Summer" burned over 19 million hectares, destroyed 3,000+ homes and killed an estimated 3 billion animals. Climate change is making fire seasons longer, hotter, and more intense — with recovery windows shrinking between events.
+      </p>
+      <div class="issue-severity">
+        <span class="severity-label">Severity</span>
+        <div class="severity-bar"><div class="severity-fill" data-pct="95"></div></div>
+        <span class="severity-pct">95%</span>
+      </div>
+    </div>
+
+    <div class="issue-card" style="--color: #0B9EC4;">
+      <span class="issue-icon">🪸</span>
+      <span class="issue-num">Issue 02 — Ocean</span>
+      <h3 class="issue-title">Great Barrier Reef Collapse</h3>
+      <p class="issue-desc">
+        The world's largest coral reef system has suffered five mass bleaching events since 1998. Warming seas cause coral to expel symbiotic algae and die. Over 50% of coral cover has been lost, and projections suggest catastrophic collapse by 2050 without dramatic emissions cuts.
+      </p>
+      <div class="issue-severity">
+        <span class="severity-label">Severity</span>
+        <div class="severity-bar"><div class="severity-fill" data-pct="90"></div></div>
+        <span class="severity-pct">90%</span>
+      </div>
+    </div>
+
+    <div class="issue-card" style="--color: #8B6914;">
+      <span class="issue-icon">🌿</span>
+      <span class="issue-num">Issue 03 — Land</span>
+      <h3 class="issue-title">Land Clearing & Habitat Loss</h3>
+      <p class="issue-desc">
+        Australia ranks among the world's worst land-clearing nations. Queensland and NSW clear hundreds of thousands of hectares annually, fragmenting habitat corridors for koalas, gliders, and other wildlife. Loss of old-growth forests is irreversible on human timescales.
+      </p>
+      <div class="issue-severity">
+        <span class="severity-label">Severity</span>
+        <div class="severity-bar"><div class="severity-fill" data-pct="85"></div></div>
+        <span class="severity-pct">85%</span>
+      </div>
+    </div>
+
+    <div class="issue-card" style="--color: #7B3F9E;">
+      <span class="issue-icon">🦘</span>
+      <span class="issue-num">Issue 04 — Species</span>
+      <h3 class="issue-title">Extinction Crisis</h3>
+      <p class="issue-desc">
+        Australia has the world's highest rate of mammal extinction. Over 100 endemic species have been lost since European settlement. Koalas were listed as endangered in 2022. Feral cats, foxes, and land clearing drive ongoing collapse of unique island species.
+      </p>
+      <div class="issue-severity">
+        <span class="severity-label">Severity</span>
+        <div class="severity-bar"><div class="severity-fill" data-pct="88"></div></div>
+        <span class="severity-pct">88%</span>
+      </div>
+    </div>
+
+    <div class="issue-card" style="--color: #1A7A4A;">
+      <span class="issue-icon">💧</span>
+      <span class="issue-num">Issue 05 — Water</span>
+      <h3 class="issue-title">Murray–Darling Water Crisis</h3>
+      <p class="issue-desc">
+        The Murray–Darling Basin — Australia's most important river system — is collapsing under agricultural over-extraction, drought, and poor water policy. Mass fish kills, algal blooms, and dry riverbeds have devastated downstream communities and ecosystems alike.
+      </p>
+      <div class="issue-severity">
+        <span class="severity-label">Severity</span>
+        <div class="severity-bar"><div class="severity-fill" data-pct="80"></div></div>
+        <span class="severity-pct">80%</span>
+      </div>
+    </div>
+
+    <div class="issue-card" style="--color: #C8622A;">
+      <span class="issue-icon">🌡️</span>
+      <span class="issue-num">Issue 06 — Climate</span>
+      <h3 class="issue-title">Rising Temperatures & Drought</h3>
+      <p class="issue-desc">
+        Australia has warmed by approximately 1.5°C since 1910. Droughts are becoming more frequent and severe, threatening agriculture, water security, and human health. Heatwaves regularly break records, and the window for bold climate action is narrowing fast.
+      </p>
+      <div class="issue-severity">
+        <span class="severity-label">Severity</span>
+        <div class="severity-bar"><div class="severity-fill" data-pct="92"></div></div>
+        <span class="severity-pct">92%</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COUNTER SECTION -->
+<section class="counter-section">
+  <div class="counters-grid">
+    <div class="counter-item">
+      <span class="counter-value" data-count="114">0</span>
+      <span class="counter-label">Extinct Australian Mammals</span>
+    </div>
+    <div class="counter-item">
+      <span class="counter-value" data-count="1900">0</span>
+      <span class="counter-label">Threatened Species Listed</span>
+    </div>
+    <div class="counter-item">
+      <span class="counter-value" data-count="3">0</span>
+      <span class="counter-label">Billion Animals Lost in Black Summer</span>
+    </div>
+    <div class="counter-item">
+      <span class="counter-value" data-count="50">0</span>
+      <span class="counter-label">% Reef Coral Lost Since 1990s</span>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="data-section" id="timeline">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">A Worsening Record</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">1788 — Present</div>
+      <div class="timeline-event">European Settlement & Land Clearing</div>
+      <div class="timeline-detail">Arrival of European settlers triggered the fastest mammal extinction rate ever recorded, with feral animals and widespread clearing destroying native ecosystems.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">1998</div>
+      <div class="timeline-event">First Mass Coral Bleaching Event</div>
+      <div class="timeline-detail">El Niño–driven warming caused the Great Barrier Reef's first documented mass bleaching, setting a pattern that would escalate dramatically in coming decades.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2000–2009</div>
+      <div class="timeline-event">The Millennium Drought</div>
+      <div class="timeline-detail">A decade-long drought devastated the Murray–Darling Basin and southeast Australia, foreshadowing the prolonged dry conditions climate science had been predicting.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2016 & 2017</div>
+      <div class="timeline-event">Back-to-Back Mass Bleaching Events</div>
+      <div class="timeline-detail">Two consecutive bleaching years killed approximately 50% of the shallow-water coral on the northern Great Barrier Reef — unprecedented in recorded history.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2019–2020</div>
+      <div class="timeline-event">Black Summer Megafires</div>
+      <div class="timeline-detail">Record-breaking bushfires burned 19+ million hectares across NSW, Victoria, Queensland and South Australia, releasing 900 megatonnes of CO₂ and killing an estimated 3 billion animals.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2022</div>
+      <div class="timeline-event">Koala Listed as Endangered</div>
+      <div class="timeline-detail">Australia's most iconic animal was officially listed as endangered across Queensland, New South Wales and the ACT — a turning point for biodiversity policy.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">Now</div>
+      <div class="timeline-event">The Decisive Decade</div>
+      <div class="timeline-detail">Scientists broadly agree: the actions taken this decade will determine whether Australia's most unique ecosystems survive — or are permanently lost to history.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP SECTION -->
+<section class="map-section" id="map">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Issues by Region</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="map-container">
+    <div class="map-tooltip" id="mapTooltip">
+      <div class="map-tooltip-title" id="tooltipTitle"></div>
+      <div class="map-tooltip-issue" id="tooltipIssue"></div>
+    </div>
+
+    <svg class="australia-svg" viewBox="0 0 800 700" xmlns="http://www.w3.org/2000/svg">
+      <!-- Western Australia -->
+      <path class="aus-region" id="wa"
+        d="M50,150 L280,150 L280,520 L120,580 L50,520 Z"
+        data-region="Western Australia"
+        data-issue="Extreme drought & heat stress; habitat loss in the Pilbara and Kimberley; invasive species threatening quolls and numbats."
+      />
+      <text x="130" y="350" fill="rgba(245,240,232,0.5)" font-size="13" font-family="Space Mono" text-anchor="middle" pointer-events="none">WA</text>
+
+      <!-- Northern Territory -->
+      <path class="aus-region" id="nt"
+        d="M280,150 L440,150 L440,400 L280,400 Z"
+        data-region="Northern Territory"
+        data-issue="Savanna burning releases massive CO₂; invasive cane toads destroying native species; saltwater intrusion into floodplains."
+      />
+      <text x="360" y="285" fill="rgba(245,240,232,0.5)" font-size="13" font-family="Space Mono" text-anchor="middle" pointer-events="none">NT</text>
+
+      <!-- Queensland -->
+      <path class="aus-region" id="qld"
+        d="M440,150 L620,150 L620,430 L520,500 L440,430 Z"
+        data-region="Queensland"
+        data-issue="World's worst land-clearing hotspot; Great Barrier Reef bleaching; koala habitat loss; record-breaking heat events."
+      />
+      <text x="530" y="310" fill="rgba(245,240,232,0.5)" font-size="13" font-family="Space Mono" text-anchor="middle" pointer-events="none">QLD</text>
+
+      <!-- South Australia -->
+      <path class="aus-region" id="sa"
+        d="M280,400 L440,400 L440,520 L360,580 L280,520 Z"
+        data-region="South Australia"
+        data-issue="Murray–Darling Basin over-extraction; mass fish kills; regular toxic algal blooms; severe drought impacts on agriculture."
+      />
+      <text x="360" y="480" fill="rgba(245,240,232,0.5)" font-size="13" font-family="Space Mono" text-anchor="middle" pointer-events="none">SA</text>
+
+      <!-- New South Wales -->
+      <path class="aus-region" id="nsw"
+        d="M440,430 L620,430 L620,570 L520,600 L440,570 Z"
+        data-region="New South Wales"
+        data-issue="Black Summer fires epicentre; koala population decline; Hunter Valley coal mining impacts; coastal erosion accelerating."
+      />
+      <text x="530" y="510" fill="rgba(245,240,232,0.5)" font-size="13" font-family="Space Mono" text-anchor="middle" pointer-events="none">NSW</text>
+
+      <!-- Victoria -->
+      <path class="aus-region" id="vic"
+        d="M440,570 L580,570 L560,640 L440,640 Z"
+        data-region="Victoria"
+        data-issue="Mountain ash old-growth logging; rising sea levels threatening Port Phillip Bay; alpine ecosystem decline from warming."
+      />
+      <text x="510" y="618" fill="rgba(245,240,232,0.5)" font-size="11" font-family="Space Mono" text-anchor="middle" pointer-events="none">VIC</text>
+
+      <!-- Tasmania -->
+      <path class="aus-region" id="tas"
+        d="M530,660 L610,660 L610,720 L530,720 Z"
+        data-region="Tasmania"
+        data-issue="Last old-growth temperate rainforest under logging pressure; warming ocean temperatures threatening marine species."
+      />
+      <text x="570" y="695" fill="rgba(245,240,232,0.5)" font-size="11" font-family="Space Mono" text-anchor="middle" pointer-events="none">TAS</text>
+
+      <!-- Great Barrier Reef indicator -->
+      <ellipse cx="680" cy="280" rx="45" ry="120"
+        fill="rgba(11,94,110,0.2)"
+        stroke="rgba(11,94,110,0.6)"
+        stroke-width="1.5"
+        stroke-dasharray="4,3"
+        class="aus-region"
+        data-region="Great Barrier Reef"
+        data-issue="Repeated mass bleaching events; over 50% coral cover lost; warming + acidifying seas threatening total ecosystem collapse by 2050."
+      />
+      <text x="680" y="278" fill="rgba(11,94,110,0.8)" font-size="9" font-family="Space Mono" text-anchor="middle" pointer-events="none">REEF</text>
+    </svg>
+
+    <p style="text-align:center; font-size:0.65rem; color:rgba(245,240,232,0.3); margin-top:1.5rem; letter-spacing:0.1em;">
+      ↑ HOVER OVER EACH REGION TO EXPLORE LOCAL ENVIRONMENTAL THREATS
+    </p>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <blockquote>
+    "We are the first generation to feel the impact of climate change, and the last generation that can do something about it."
+  </blockquote>
+  <cite>— Barack Obama, 2014 UN Climate Summit</cite>
+</section>
+
+<!-- TAKE ACTION -->
+<section class="action-section" id="action">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">What You Can Do</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="action-grid">
+    <div class="action-card">
+      <span class="action-emoji">🗳️</span>
+      <h3 class="action-title">Vote for Strong Climate Policy</h3>
+      <p class="action-desc">Support candidates and parties that commit to net-zero emissions, stronger land clearing laws, and science-based environmental policy at federal and state levels.</p>
+    </div>
+    <div class="action-card">
+      <span class="action-emoji">🌱</span>
+      <h3 class="action-title">Rewild Your Backyard</h3>
+      <p class="action-desc">Plant native species, remove invasive plants, and create habitat corridors. Backyard biodiversity projects collectively have enormous impact on local wildlife populations.</p>
+    </div>
+    <div class="action-card">
+      <span class="action-emoji">💡</span>
+      <h3 class="action-title">Switch to Clean Energy</h3>
+      <p class="action-desc">Move to a green energy retailer or invest in solar panels. Reducing household emissions supports the broader transition and sends market signals to power companies.</p>
+    </div>
+    <div class="action-card">
+      <span class="action-emoji">📢</span>
+      <h3 class="action-title">Speak Up & Organise</h3>
+      <p class="action-desc">Join or support organisations like ACF, WWF Australia, or the Wilderness Society. Write to your local MP. Collective advocacy has driven every major environmental win.</p>
+    </div>
+    <div class="action-card">
+      <span class="action-emoji">🚗</span>
+      <h3 class="action-title">Reduce Your Footprint</h3>
+      <p class="action-desc">Cut red meat consumption, fly less, choose public transport, and buy less new stuff. Individual actions compound — and model the behaviour change needed culturally.</p>
+    </div>
+    <div class="action-card">
+      <span class="action-emoji">💰</span>
+      <h3 class="action-title">Support Conservation Funding</h3>
+      <p class="action-desc">Donate to reef restoration projects, koala care programs, or Indigenous ranger programs protecting Country. Underfunded conservation groups are on the frontlines.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Australia Under Threat</div>
+    <p class="footer-text">
+      This website was created to raise awareness about the environmental challenges facing Australia. 
+      The data presented draws on reports from the CSIRO, Australian Institute of Marine Science, 
+      WWF Australia, and the Australian Government's State of the Environment report.
+    </p>
+  </div>
+  <div class="footer-links">
+    <a class="footer-link" href="https://www.acf.org.au" target="_blank">Australian Conservation Foundation</a>
+    <a class="footer-link" href="https://www.wwf.org.au" target="_blank">WWF Australia</a>
+    <a class="footer-link" href="https://www.csiro.au" target="_blank">CSIRO Climate Science</a>
+    <a class="footer-link" href="https://www.aims.gov.au" target="_blank">Australian Institute of Marine Science</a>
+    <a class="footer-link" href="https://www.wilderness.org.au" target="_blank">The Wilderness Society</a>
+  </div>
+  <div class="footer-copy">© 2026 Australia Under Threat — Raising awareness for the land we love.</div>
+</footer>
+
+<script>
+  // CURSOR
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animateCursor() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  // PROGRESS BAR
+  const bar = document.getElementById('progressBar');
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    bar.style.width = pct + '%';
+  });
+
+  // SEVERITY BARS — animate on scroll
+  const fills = document.querySelectorAll('.severity-fill');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.width = e.target.dataset.pct + '%';
+      }
+    });
+  }, { threshold: 0.3 });
+  fills.forEach(f => obs.observe(f));
+
+  // TIMELINE ANIMATION
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  const tlObs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.2 });
+  timelineItems.forEach((item, i) => {
+    item.style.transitionDelay = (i * 0.08) + 's';
+    tlObs.observe(item);
+  });
+
+  // COUNTERS
+  const counters = document.querySelectorAll('.counter-value');
+  const cntObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const target = parseInt(e.target.dataset.count);
+        let current = 0;
+        const step = Math.max(1, Math.floor(target / 60));
+        const interval = setInterval(() => {
+          current = Math.min(current + step, target);
+          let suffix = '';
+          if (e.target.dataset.count === '50') suffix = '%';
+          else if (e.target.dataset.count !== '3') suffix = '+';
+          e.target.textContent = current.toLocaleString() + suffix;
+          if (current >= target) clearInterval(interval);
+        }, 25);
+        cntObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => cntObs.observe(c));
+
+  // MAP TOOLTIP
+  const tooltip = document.getElementById('mapTooltip');
+  const tooltipTitle = document.getElementById('tooltipTitle');
+  const tooltipIssue = document.getElementById('tooltipIssue');
+  const mapContainer = document.querySelector('.map-container');
+
+  document.querySelectorAll('.aus-region').forEach(region => {
+    region.addEventListener('mouseenter', e => {
+      tooltipTitle.textContent = e.target.dataset.region;
+      tooltipIssue.textContent = e.target.dataset.issue;
+      tooltip.classList.add('show');
+    });
+    region.addEventListener('mousemove', e => {
+      const rect = mapContainer.getBoundingClientRect();
+      let x = e.clientX - rect.left + 15;
+      let y = e.clientY - rect.top + 15;
+      if (x + 230 > rect.width) x -= 245;
+      if (y + 120 > rect.height) y -= 130;
+      tooltip.style.left = x + 'px';
+      tooltip.style.top = y + 'px';
+    });
+    region.addEventListener('mouseleave', () => tooltip.classList.remove('show'));
+  });
+</script>
+</body>
+</html>
